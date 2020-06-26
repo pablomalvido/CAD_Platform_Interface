@@ -1,0 +1,14 @@
+Order;Type of operation;Label;Spot
+1;PC;LU1;J1.1.L
+2;RC;TY1-CA3-CA4;J1.1-J1.2-J2.1-J2.2-J3.1-J3.3
+3;RC;EP1-EP2-CA7-CA8;J1.1-J1.2-J5.1-J5.2
+4;PC;LU2;J4.1.R
+5;RC;MO1-MO2;J4.1-J4.2-J3.1-J3.2
+6;T;Gun model;J1.TS1
+7;T;Gun model;J3.TS1
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
