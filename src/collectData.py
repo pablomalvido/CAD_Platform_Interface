@@ -7,10 +7,18 @@ import csv
 
 class InputFilesDataCollector(object): 
 
-  def __init__(self, folder_path, wri_file, jigs_file, components_file, WH_file, seq_file):
+  def __init__(self, folder_path, wri_file, wri_file_2, wri_file_3, jigs_file, components_file, WH_file, seq_file):
     self.folder_path = folder_path 
     self.platform_file_path = os.path.join(folder_path, wri_file)
     self.dict_platform = self._createPlatformDict(self.platform_file_path)
+
+    if wri_file_2 != "":
+	    self.combs_file_path = os.path.join(folder_path, wri_file_2)
+	    self.dict_combs = self._createPlatformDict(self.combs_file_path)
+
+    if wri_file_3 != "":
+	    self.ATC_file_path = os.path.join(folder_path, wri_file_3)
+	    self.dict_combs = self._createPlatformDict(self.ATC_file_path)
      
     self.jigs_file_path = os.path.join(folder_path, jigs_file)
     self.dict_jigs = self._createJigsDict(self.jigs_file_path)
@@ -53,6 +61,10 @@ class InputFilesDataCollector(object):
         dic["xdim"] = float(code.get('xdim'))/1000
         dic["ydim"] = float(code.get('ydim'))/1000
         dic["zdim"] = float(code.get('zdim'))/1000
+	dic["xcol1"] = float(code.get('xcol1'))/1000
+        dic["xcol2"] = float(code.get('xcol2'))/1000
+        dic["ycol1"] = float(code.get('ycol1'))/1000
+	dic["ycol2"] = float(code.get('ycol2'))/1000
 
         for guide in code.findall('guide'): 
           key_dict = {}
@@ -79,14 +91,14 @@ class InputFilesDataCollector(object):
             tf.M.DoRotY(P) 
             tf.M.DoRotZ(Y)
             size = []
-            size = [float(key.get('length'))/1000, float(key.get('gap'))/1000, float(key.get('height'))/1000]
+            size = [float(key.get('length'))/1000, float(key.get('gap'))/1000, float(key.get('height'))/1000, float(key.get('height_corner'))/1000, float(key.get('xcol1'))/1000, float(key.get('xcol2'))/1000, float(key.get('ycol1'))/1000, float(key.get('ycol2'))/1000]
             tf2 = PyKDL.Frame()
             tf2.p = PyKDL.Vector((size[0])/2, (size[1])/2, (size[2])/2)
             tf2.M.DoRotX(0) 
             tf2.M.DoRotY(0) 
             tf2.M.DoRotZ(0)
             center_pose = tf*tf2 #Frame in the center of the gap of the guide 
-            key_dict = {'frame':tf, 'center_pose':center_pose, 'length': size[0], 'gap': size[1], 'height': size[2]}
+            key_dict = {'frame':tf, 'center_pose':center_pose, 'length': size[0], 'gap': size[1], 'height': size[2], 'height_corner': size[3], 'xcol1': size[4], 'xcol2': size[5], 'ycol1': size[6], 'ycol2': size[7]}
 
           for colli in guide.findall('collision'):
             for pos in colli.findall('pos'):
@@ -195,6 +207,166 @@ class InputFilesDataCollector(object):
           dic["trays"][tray.get('id')] = tray_dict
 
         main_dic[code.get("model")] = dic
+
+      if code.tag=="comb":
+        dic = {} 
+        couples = {}
+        dic["type"] = "comb"
+        dic["xdim"] = float(code.get('xdim'))/1000
+        dic["ydim"] = float(code.get('ydim'))/1000
+        dic["zdim"] = float(code.get('zdim'))/1000
+	dic["xcol1"] = float(code.get('xcol1'))/1000
+        dic["xcol2"] = float(code.get('xcol2'))/1000
+        dic["ycol1"] = float(code.get('ycol1'))/1000
+	dic["ycol2"] = float(code.get('ycol2'))/1000
+
+        for guide in code.findall('guide'): 
+          key_dict = {}
+          colli_dict={}
+          tape_spots = {}
+          for key in guide.findall('key'):
+            for pos in key.findall('pos'):
+              if pos.get('name') == 'x': 
+                x = float(pos.text)/1000
+              if pos.get('name') == 'y': 
+                y = float(pos.text)/1000
+              if pos.get('name') == 'z': 
+                z = float(pos.text)/1000
+            for rot in key.findall('rot'): 
+              if rot.get('name') == 'R': 
+                R = float(rot.text) 
+              if rot.get('name') == 'P': 
+                P = float(rot.text) 
+              if rot.get('name') == 'Y': 
+                Y = float(rot.text) 
+            tf = PyKDL.Frame() 
+            tf.p = PyKDL.Vector(x, y, z) 
+            tf.M.DoRotX(R) 
+            tf.M.DoRotY(P) 
+            tf.M.DoRotZ(Y)
+            size = []
+            size = [float(key.get('length'))/1000, float(key.get('gap'))/1000, float(key.get('height'))/1000, float(key.get('height_corner'))/1000, float(key.get('xcol1'))/1000, float(key.get('xcol2'))/1000, float(key.get('ycol1'))/1000, float(key.get('ycol2'))/1000]
+            tf2 = PyKDL.Frame()
+            tf2.p = PyKDL.Vector((size[0])/2, (size[1])/2, (size[2])/2)
+            tf2.M.DoRotX(0) 
+            tf2.M.DoRotY(0) 
+            tf2.M.DoRotZ(0)
+            center_pose = tf*tf2 #Frame in the center of the gap of the guide 
+            key_dict = {'frame':tf, 'center_pose':center_pose, 'length': size[0], 'gap': size[1], 'height': size[2], 'height_corner': size[3], 'xcol1': size[4], 'xcol2': size[5], 'ycol1': size[6], 'ycol2': size[7]}
+
+          for colli in guide.findall('collision'):
+            for pos in colli.findall('pos'):
+              if pos.get('name') == 'x': 
+                x = float(pos.text)/1000
+              if pos.get('name') == 'y': 
+                y = float(pos.text)/1000
+              if pos.get('name') == 'z': 
+                z = float(pos.text)/1000
+            for rot in colli.findall('rot'): 
+              if rot.get('name') == 'R': 
+                R = float(rot.text) 
+              if rot.get('name') == 'P': 
+                P = float(rot.text) 
+              if rot.get('name') == 'Y': 
+                Y = float(rot.text) 
+            tf = PyKDL.Frame() 
+            tf.p = PyKDL.Vector(x, y, z) 
+            tf.M.DoRotX(R) 
+            tf.M.DoRotY(P) 
+            tf.M.DoRotZ(Y)
+            colli_dict = {'frame':tf, 'xdim': float(colli.get('xdim'))/1000, 'ydim': float(colli.get('ydim'))/1000, 'zdim': float(colli.get('zdim'))/1000}
+
+          couples[guide.get('couple')] = {'key': key_dict, 'collision': colli_dict}
+        
+        dic["guides"] = couples
+
+        main_dic[code.get("model")] = dic
+
+      if code.tag=="ATC_station":
+        dic = {} 
+        couples = {}
+        dic["type"] = "ATC_station"
+        dic["xdim"] = float(code.get('xdim'))/1000
+        dic["ydim"] = float(code.get('ydim'))/1000
+        dic["zdim"] = float(code.get('zdim'))/1000
+	dic["tool"] = code.get('tool')
+	for dim in code.findall('tool_dim'):
+		dic["x_tool"] = float(dim.get('x'))/1000
+		dic["y_tool"] = float(dim.get('y'))/1000
+		dic["z_tool"] = float(dim.get('z'))/1000
+
+        for key in code.findall('tool_base'):
+		for pos in key.findall('pos'): 
+			if pos.get('name') == 'x': 
+		        	x = float(pos.text)/1000
+			if pos.get('name') == 'y': 
+				y = float(pos.text)/1000
+			if pos.get('name') == 'z': 
+		        	z = float(pos.text)/1000
+		for rot in key.findall('rot'): 
+			if rot.get('name') == 'R': 
+				R = float(rot.text) 
+			if rot.get('name') == 'P': 
+				P = float(rot.text) 
+			if rot.get('name') == 'Y': 
+		        	Y = float(rot.text) 
+		tf_base = PyKDL.Frame() 
+		tf_base.p = PyKDL.Vector(x, y, z) 
+		tf_base.M.DoRotX(R) 
+		tf_base.M.DoRotY(P) 
+		tf_base.M.DoRotZ(Y)
+	dic['frame_base'] = tf_base
+
+	for key in code.findall('tool_end'):
+		for pos in key.findall('pos'): 
+			if pos.get('name') == 'x': 
+		        	x = float(pos.text)/1000
+			if pos.get('name') == 'y': 
+				y = float(pos.text)/1000
+			if pos.get('name') == 'z': 
+		        	z = float(pos.text)/1000
+		for rot in key.findall('rot'): 
+			if rot.get('name') == 'R': 
+				R = float(rot.text) 
+			if rot.get('name') == 'P': 
+				P = float(rot.text) 
+			if rot.get('name') == 'Y': 
+		        	Y = float(rot.text) 
+		tf_end = PyKDL.Frame() 
+		tf_end.p = PyKDL.Vector(x, y, z) 
+		tf_end.M.DoRotX(R) 
+		tf_end.M.DoRotY(P) 
+		tf_end.M.DoRotZ(Y)
+	dic['frame_end'] = tf_end
+
+	if dic["tool"] == "gripper":
+		for dim in code.findall('finger_dim'):
+			dic["finger_length"] = float(dim.get('finger_length'))/1000
+			dic["finger_width"] = float(dim.get('finger_width'))/1000
+			dic["finger_height"] = float(dim.get('finger_height'))/1000
+		for key in code.findall('gripper_nail'):
+			for pos in key.findall('pos'): 
+				if pos.get('name') == 'x': 
+					x = float(pos.text)/1000
+				if pos.get('name') == 'y': 
+					y = float(pos.text)/1000
+				if pos.get('name') == 'z': 
+					z = float(pos.text)/1000
+			for rot in key.findall('rot'): 
+				if rot.get('name') == 'R': 
+					R = float(rot.text) 
+				if rot.get('name') == 'P': 
+					P = float(rot.text) 
+				if rot.get('name') == 'Y': 
+					Y = float(rot.text) 
+			tf_nail = PyKDL.Frame() 
+			tf_nail.p = PyKDL.Vector(x, y, z) 
+			tf_nail.M.DoRotX(R) 
+			tf_nail.M.DoRotY(P) 
+			tf_nail.M.DoRotZ(Y)
+		dic['frame_nail'] = tf_nail
+
+	main_dic[code.get("model")] = dic
 
     return main_dic
 
@@ -318,6 +490,26 @@ class InputFilesDataCollector(object):
           jig, tape_spot = map(str, row[3].split("."))
 	  temp_dict['spot'] = []
           temp_dict['spot'].append({'jig': jig, 'tape_spot': tape_spot[2:]})
+          main_list.append(temp_dict)
+
+	elif ((row[1].upper()) == "TJ"): #Taping in a jig (new setup)
+          temp_dict['operation'] = row[1]
+          temp_dict['label'] = row[2].split("-")
+          jig, guide = map(str, row[3].split("."))
+	  temp_dict['spot'] = []
+          temp_dict['spot'].append({'jig': jig, 'guide': guide})
+          main_list.append(temp_dict)
+
+        elif ((row[1].upper()) == "EC"): #Extract Cable
+          temp_dict['operation'] = row[1]
+          temp_dict['label'] = row[2].split("-")
+	  temp_spot = row[3].split("-")
+	  #0: connector, 1: end
+          comb_con, couple_con = map(str, temp_spot[0].split("."))
+	  temp_dict['spot'] = []
+          temp_dict['spot'].append({'comb': comb_con, 'couple': couple_con})
+	  comb_end, couple_end = map(str, temp_spot[1].split("."))
+          temp_dict['spot'].append({'comb': comb_end, 'couple': couple_end})
           main_list.append(temp_dict)
       
     return main_list

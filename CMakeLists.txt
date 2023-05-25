@@ -71,6 +71,8 @@ add_service_files(
   resetTo.srv
   index_operation.srv
   all_operations.srv
+  all_cad_components.srv
+  tool_info.srv
   #Pose_srv.srv
 )
 

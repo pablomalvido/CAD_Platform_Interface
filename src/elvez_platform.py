@@ -36,13 +36,20 @@ class ItemID(object):
         #Box
         if(label[0]=='B'):
             return 2
+        #Comb
+        if(label[0]=='C'):
+            return 3
+	#ATC
+        if(label[0]=='A'):
+            return 4
  
 
 class Transform(PyKDL.Frame):
-    def __init__(self, node, scale, parent=None):
+    def __init__(self, node, scale, file_name, parent=None):
         super(PyKDL.Frame, self).__init__() 
         self.node = node 
 	self.scale = scale
+        self.file_name = file_name
         #self.shape
         self.children_transforms = []
         self.id_string = ''
@@ -53,7 +60,7 @@ class Transform(PyKDL.Frame):
         self.parseAttributes(node) 
         for element in self.node:
             if element.tag.lower() == 'transform':
-                self.children_transforms.append(Transform(element, self.scale, self)) 
+                self.children_transforms.append(Transform(element, self.scale, file_name, self)) 
 
     def parseAttributes(self, node):  
         """ Saves the attributes of the transform: translation, rotation and ID """
@@ -121,7 +128,7 @@ class Transform(PyKDL.Frame):
 
     def getName(self): 
         if self.isUseful(): 
-            return self.item_id.getCadID() 
+            return self.item_id.getCadID() + self.file_name
         else: 
             return "NONAME"
 
@@ -131,16 +138,22 @@ class Transform(PyKDL.Frame):
         else: 
             return "NOCOMMERCIAL"
 
+    def getLabel(self): 
+        if self.isUseful(): 
+            return self.item_id.getLabel()
+        else: 
+            return "NOLABEL"
+
 
 class Scene(Transform):
-    def __init__(self, node, id_map):
+    def __init__(self, node, id_map, file_name):
         self.id_map = id_map
 	self.scale = np.array([1.0, 1.0, 1.0])
-        super(Scene, self).__init__(node, self.scale, None) 
+        super(Scene, self).__init__(node, self.scale, file_name, None) 
         self.deepItemIDMapping(id_map)
 
     @staticmethod
-    def buildScene(x3d_file, wri_file):
+    def buildScene(x3d_file, wri_file, file_name):
         tree = ET.parse(x3d_file)
         root = tree.getroot()
         id_map = {}
@@ -152,7 +165,7 @@ class Scene(Transform):
                     id_map[chunks[0].strip()] = ItemID(chunks[0].strip(), chunks[1].strip(), chunks[2].strip())
         for child in root:
             if child.tag.lower() == 'scene':
-                return Scene(child, id_map)
+                return Scene(child, id_map, file_name)
 
 
 class Platform(object):
@@ -161,7 +174,7 @@ class Platform(object):
         self.folder = folder
         self.files = self.retrieveFilesNames()
 	#The following line creates an scene and all the transforms (one for each component of the ELVEZ platform)
-        self.scene = Scene.buildScene(self.files['cad'], self.files['ids'])
+        self.scene = Scene.buildScene(self.files['cad'], self.files['ids'], name)
         self.useful_transforms = []
         self.scene.deepSearch(self.useful_transforms)
 
@@ -173,10 +186,10 @@ class Platform(object):
         return file_map
 
     def getFileNameForCad(self): 
-        return self.name + "_cad.x3d" 
+        return self.name + "_cad.x3d"   #self.name = combs or platform
  
     def getFileNameForIds(self): 
-        return self.name + "_ids.wri"    
+        return self.name + "_ids.wri"    #combs = combs or platform
 
 """
 ############### MAIN PRUEBAS ########
