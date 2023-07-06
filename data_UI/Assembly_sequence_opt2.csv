@@ -2,6 +2,5 @@ Order;Type of operation;Label;Spot
 1;EC;CON1;C1.1.R
 1;PC;CON1;J8.1.R
 2;RC;CON1;J1.1-J2.1-J3.1
-1;EC;CON2;C2.1.L
 3;PC;CON2;J9.1.L
 4;RC;CON2;J3.1-J2.1-J1.1-J4.1
