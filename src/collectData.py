@@ -480,7 +480,7 @@ class InputFilesDataCollector(object):
           temp_dict['operation'] = row[1]
           temp_dict['label'] = row[2].split("-")
           jig, couple, side = map(str, row[3].split("."))
-	  temp_dict['spot'] = []
+          temp_dict['spot'] = []
           temp_dict['spot'].append({'jig': jig, 'couple': couple, 'side': side})
           main_list.append(temp_dict)
 
@@ -488,28 +488,34 @@ class InputFilesDataCollector(object):
           temp_dict['operation'] = row[1]
           temp_dict['label'] = row[2].split("-")
           jig, tape_spot = map(str, row[3].split("."))
-	  temp_dict['spot'] = []
+          temp_dict['spot'] = []
           temp_dict['spot'].append({'jig': jig, 'tape_spot': tape_spot[2:]})
           main_list.append(temp_dict)
 
-	elif ((row[1].upper()) == "TJ"): #Taping in a jig (new setup)
-          temp_dict['operation'] = row[1]
-          temp_dict['label'] = row[2].split("-")
-          jig, guide = map(str, row[3].split("."))
-	  temp_dict['spot'] = []
-          temp_dict['spot'].append({'jig': jig, 'guide': guide})
-          main_list.append(temp_dict)
+        elif ((row[1].upper()) == "TJ"): #Taping in a jig (new setup)
+                temp_dict['operation'] = row[1]
+                temp_dict['label'] = row[2].split("-")
+                jig, guide = map(str, row[3].split("."))
+                temp_dict['spot'] = []
+                temp_dict['spot'].append({'jig': jig, 'guide': guide})
+                main_list.append(temp_dict)
 
         elif ((row[1].upper()) == "EC"): #Extract Cable
+          #       temp_dict['operation'] = row[1]
+          #       temp_dict['label'] = row[2].split("-")
+          #       temp_spot = row[3].split("-")
+          #       #0: connector, 1: end
+          #       comb_con, couple_con = map(str, temp_spot[0].split("."))
+          #       temp_dict['spot'] = []
+          #       temp_dict['spot'].append({'comb': comb_con, 'couple': couple_con})
+          #       comb_end, couple_end = map(str, temp_spot[1].split("."))
+          #       temp_dict['spot'].append({'comb': comb_end, 'couple': couple_end})
+          #       main_list.append(temp_dict)
           temp_dict['operation'] = row[1]
           temp_dict['label'] = row[2].split("-")
-	  temp_spot = row[3].split("-")
-	  #0: connector, 1: end
-          comb_con, couple_con = map(str, temp_spot[0].split("."))
-	  temp_dict['spot'] = []
-          temp_dict['spot'].append({'comb': comb_con, 'couple': couple_con})
-	  comb_end, couple_end = map(str, temp_spot[1].split("."))
-          temp_dict['spot'].append({'comb': comb_end, 'couple': couple_end})
+          jig, couple, side = map(str, row[3].split("."))
+          temp_dict['spot'] = []
+          temp_dict['spot'].append({'jig': jig, 'couple': couple, 'side': side})
           main_list.append(temp_dict)
       
     return main_list

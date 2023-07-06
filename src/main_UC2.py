@@ -56,8 +56,8 @@ package_path = 'file://' + files_path + 'stl/'
 platform = Platform(cad_name, files_path)
 transforms = platform.useful_transforms
 if cad_name_combs != "":
-	combs = Platform(cad_name_combs, files_path)
-	transforms_combs = combs.useful_transforms
+    combs = Platform(cad_name_combs, files_path)
+    transforms_combs = combs.useful_transforms
 else:
 	combs = []
 	transforms_combs = []
@@ -71,9 +71,7 @@ dict_elvez = InputFilesDataCollector(files_path, ids_file, ids_combs_file, ids_A
 dict_elvez.showInfo()  #Print the extracted information from the input files
 jigs_complete_dict = {}  #Variable filled with the info returned by the create_jigs_struct() function
 
-print("AAAAAA")
-print(dict_elvez.dict_jigs)
-print("AAAAAA")
+#print(dict_elvez.dict_jigs)
 
 #Function for broadcasting transforms
 def broadcastTransform(br, frame, frame_id, parent_frame, time=rospy.get_rostime()): 
@@ -861,10 +859,11 @@ def all_operations_callback(req):
 	    for spot in iter_index['spot']:
 		new_spot = spot_data()
 		#print(spot)
-		if iter_index['operation']=='EC':
-			new_spot.jig = spot['comb']
-			new_spot.id = spot['couple']
-		else:
+		# if iter_index['operation']=='EC':
+		# 	new_spot.jig = spot['comb']
+		# 	new_spot.id = spot['couple']
+        # else:
+		if True:
 			#print(iter_index['spot'][0]['jig'])
 			new_spot.jig = spot['jig']
 			if iter_index['operation']=='T':
@@ -873,7 +872,7 @@ def all_operations_callback(req):
 			    new_spot.id = spot['guide']
 			else:
 			    new_spot.id = spot['couple']
-			if iter_index['operation']=='PC':
+			if iter_index['operation']=='PC' or iter_index['operation']=='EC':
 			    new_spot.side = spot['side']
 		item.spot.append(new_spot)
 	    resp.data.append(item)

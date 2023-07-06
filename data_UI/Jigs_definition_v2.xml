@@ -80,12 +80,32 @@
             </collision>
         </guide>
     </jig>
-    <comb model="0000210" xdim="10" xcol1="0" xcol2="10" ydim="34" ycol1="0" ycol2="34" zdim="65">
+    <comb model="0000210" xdim="3" xcol1="0" xcol2="3" ydim="21" ycol1="0" ycol2="21" zdim="5">
         <guide couple="1">
-            <key length="10" gap="10" height="30" height_corner="0" xcol1="0" xcol2="10" ycol1="0" ycol2="34">
+            <key length="4" gap="3" height="28.5" height_corner="0" xcol1="0" xcol2="3" ycol1="0" ycol2="21"><!--length and gap are inverted-->
+                <pos name="x">9.75</pos>
+                <pos name="y">0</pos>
+                <pos name="z">5</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </key>
+            <collision xdim="0" ydim="0" zdim="0">
                 <pos name="x">0</pos>
-                <pos name="y">12</pos>
-                <pos name="z">65</pos>
+                <pos name="y">0</pos>
+                <pos name="z">0</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </collision>
+        </guide>
+    </comb>
+    <comb model="0000211" xdim="2" xcol1="0" xcol2="2" ydim="30" ycol1="0" ycol2="30" zdim="5">
+        <guide couple="1">
+            <key length="12.4" gap="2" height="12" height_corner="0" xcol1="0" xcol2="2" ycol1="0" ycol2="30"><!--length and gap are inverted-->
+                <pos name="x">8.8</pos>
+                <pos name="y">0</pos>
+                <pos name="z">5</pos>
                 <rot name="R">0</rot>
                 <rot name="P">0</rot>
                 <rot name="Y">0</rot>
