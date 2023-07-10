@@ -5,14 +5,16 @@
     <!--node pkg="tf" type="static_transform_publisher" name="platform_rf" args="0.29513 -1.381 -1.29713 -1.57 0 1.309 cell platform_rf 10" /-->
     <!--node pkg="tf" type="static_transform_publisher" name="platform_rf" args="0.4495 -1.249 -1.2395 -1.57 0 1.57 cell platform_rf 10"/--> <!--THIS IS THE GOOD ONE/--> 
     <!--node pkg="tf" type="static_transform_publisher" name="platform_rf" args="0.45 -0.72 -1.2395 3.14 0 1.57 cell platform_rf 10"/--> <!--REACHABILITY ISSUES SOLVED-->
-    <node pkg="tf" type="static_transform_publisher" name="platform_rf" args="-0.4816 0.6243 0.711 0 0 1.57 cell platform_rf 10"/> <!--"0.58 -0.657 -1.2395 3.14 0 1.57 cell platform_rf 10" --><!--REAL IN COMBS POSITION. ZYX rotation around child axes-->
+    <node pkg="tf" type="static_transform_publisher" name="platform_rf" args="-0.486 0.667 0.713 0 0 1.57 cell platform_rf 10"/> <!--"0.58 -0.657 -1.2395 3.14 0 1.57 cell platform_rf 10" --><!--REAL IN COMBS POSITION. ZYX rotation around child axes-->
+    <!--node pkg="tf" type="static_transform_publisher" name="platform_rf" args="-0.4816 0.6243 0.711 0 0 1.57 cell platform_rf 10"/--> <!-- THEORY BREADBOARD METALLIC -->
     <!---0.28656, 0.47492 (Gripper) // -0.28118, 0.48 (Platform) // 0.00538, -0.00508 (Diff) -->
     <!--node pkg="tf" type="static_transform_publisher" name="platform_rf" args="0.4095 -1.178 -1.26543 -1.57 0 1.309 cell platform_rf 10" /> <ICPS22-->
-    <node pkg="tf" type="static_transform_publisher" name="combs_rf" args="-0.75 0.04 1.517 0 0 0 cell combs_rf 10" /> <!---0.75 0.04 1.217 0 0 0 cell combs_rf 10--><!--0.505 -0.066 -0.59075 3.14 0 0 cell combs_rf 10-->
+    <node pkg="tf" type="static_transform_publisher" name="combs_rf" args="-0.789 0.083 1.576 0 0 0 cell combs_rf 10" /> <!---0.75 0.04 1.217 0 0 0 cell combs_rf 10--><!--0.505 -0.066 -0.59075 3.14 0 0 cell combs_rf 10-->
+    <!--node pkg="tf" type="static_transform_publisher" name="combs_rf" args="-0.75 0.08 1.517 0 0 0 cell combs_rf 10" /--> <!--THEORY-->
     <node pkg="tf" type="static_transform_publisher" name="ATC_rf" args="-1.59 0.805 1.4625 -1.57 0 1.57 cell ATC_rf 10" /><!-- "1.59 -0.805 -0.5455 1.57 0 1.57 cell ATC_rf 10" --><!-- REAL "1.601 -0.805 -0.5455 1.57 0 1.57 cell ATC_rf 10" --><!--"1.589 -0.782 -0.6155 1.57 0 1.57 cell ATC_rf 10" />-->
     <node name="UC2_handler" pkg="elvez_pkg" type="main_UC2.py" output="screen">
         <param name="base_frame" value="/torso_base_link" />
-	<param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_UI/"/>
+	<param name="files_path" value="/home/remodel/remodel_demos_ws/src/elvez_pkg/data_UI/"/>
         <!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_routing_v4/"/-->
         <!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_routing_v2/"/-->
 	<!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_icps/" /-->
