@@ -32,7 +32,7 @@
 						</IndexedFaceSet>
 					</Shape>
 			<Transform DEF="ID0002"
-			           translation="225.25 169.3 13.000000"
+			           translation="282.4 175.62 13.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
 			           >
@@ -49,7 +49,7 @@
 						</Shape>
 			</Transform>
 			<Transform DEF="ID0009"
-			           translation="115.750000 165.300003 13.000000"
+			           translation="175.0000 172.62 13.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
 			           >
@@ -66,7 +66,7 @@
 						</Shape>
 			</Transform>
 			<Transform DEF="ID0010"
-			           translation="495.48000 195.300000 13.000000"
+			           translation="550.0000 202.620000 13.000000"
 				   old_trans="465.48000 43.4900000 5.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 0.000000 1.000000 3.141592"
@@ -87,7 +87,7 @@
 						</Shape>
 			</Transform>
 			<Transform DEF="ID0003"
-			           translation="333.2500 169.3 13.000000"
+			           translation="382.40 175.62 13.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
 			           >
@@ -104,7 +104,7 @@
 						</Shape>
 			</Transform>
 			<Transform DEF="ID0004"
-			           translation="373.25 169.3 13.000000"
+			           translation="432.4 175.62 13.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
 			           >
@@ -122,7 +122,7 @@
 			</Transform>
 			<Transform DEF="ID0005"
 
-			           translation="160.0 80.0 13.000000"
+			           translation="217.38 75.53 13.000000"
 			           scale="1.000000 1.000000 1.000000"
 				   rotation="0.000000 0.000000 1.000000 1.0108"
 			           >
