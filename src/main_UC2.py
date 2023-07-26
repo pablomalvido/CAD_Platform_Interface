@@ -32,7 +32,8 @@ listener = tf.TransformListener()
 
 #Obtain input parameters from the launcher
 base_frame = rospy.get_param('~base_frame', "") 
-files_path = rospy.get_param('~files_path', "") 
+files_path_rel = rospy.get_param('~files_path_rel', "") 
+files_path = os.path.join(os.path.dirname(__file__), "../" + files_path_rel)
 cad_name = rospy.get_param('~cad_name', "")
 cad_name_combs = rospy.get_param('~cad_name_combs', "")
 cad_name_ATC = rospy.get_param('~cad_name_ATC', "")
@@ -1002,4 +1003,3 @@ while not rospy.is_shutdown():
                     name = tf_name + '_ATC_base_' + jigs_complete_dict[trans_tf.getLabel()]['tool_name']
                     #frame.p = frame.p * 0.001
                     broadcastTransform(br, frame, name, trans_tf.getName(), time=current_time)
-    
