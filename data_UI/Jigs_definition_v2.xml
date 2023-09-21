@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <data>
-    <jig model="0011" xdim="10" xcol1="0" xcol2="10" ydim="30" ycol1="-8" ycol2="22" zdim="100">
+    <jig model="0011" xdim="10" xcol1="0" xcol2="10" ydim="30" ycol1="-8" ycol2="22" zdim="153">
         <guide couple="1">
-            <key length="10" gap="10" height="54.5" height_corner="54.5" xcol1="0" xcol2="10" ycol1="-14" ycol2="24">
+            <key length="10" gap="9.5" height="33" height_corner="54.5" xcol1="0" xcol2="10" ycol1="-14" ycol2="24">
                 <pos name="x">0</pos>
-                <pos name="y">6</pos>
-                <pos name="z">80</pos>
+                <pos name="y">8.25</pos>
+                <pos name="z">120</pos>
                 <rot name="R">0</rot>
                 <rot name="P">0</rot>
                 <rot name="Y">0</rot>
@@ -66,6 +66,26 @@
                 <pos name="x">20</pos>
                 <pos name="y">4.5</pos>
                 <pos name="z">90</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </key>
+            <collision xdim="10" ydim="20" zdim="25">
+                <pos name="x">34</pos>
+                <pos name="y">0</pos>
+                <pos name="z">55</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </collision>
+        </guide>
+    </jig>
+    <jig model="0015" xdim="18" xcol1="0" xcol2="18" ydim="22" ycol1="0" ycol2="22" zdim="100">
+        <guide couple="1">
+            <key length="3" gap="4" height="31.5" height_corner="31.5" xcol1="0" xcol2="18" ycol1="-11" ycol2="7">
+                <pos name="x">18</pos>
+                <pos name="y">7.25</pos>
+                <pos name="z">118</pos>
                 <rot name="R">0</rot>
                 <rot name="P">0</rot>
                 <rot name="Y">0</rot>

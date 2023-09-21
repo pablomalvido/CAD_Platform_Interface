@@ -9,7 +9,7 @@
             <cable Row1="4" Col1="0">CA5</cable>
             <cable Row1="5" Col1="0">CA6</cable>
             <cable Row1="6" Col1="0">CA7</cable>
-            <cable Row1="7" Col1="0">CA8</cable>
+	    <cable Row1="7" Col1="0">CA8</cable>
 	</end_connector>
 	<end_connector label="GR12">
             <cable Row1="8" Col1="0">CA9</cable>

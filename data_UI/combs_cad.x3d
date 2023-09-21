@@ -33,7 +33,7 @@
 						</IndexedFaceSet>
 					</Shape>
 				</Group>
-			<Transform DEF="ID0002"
+			<Transform DEF="ID0003"
 			           translation="64.500000 -20.000000 10.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
@@ -52,7 +52,7 @@
 						</Shape>
 					</Group>
 			</Transform>
-			<Transform DEF="ID0003"
+			<Transform DEF="ID0002"
 			           translation="114.500000 -20.000000 10.000000"
 			           scale="1.000000 1.000000 1.000000"
 			           rotation="0.000000 1.000000 0.000000 0.000000"
