@@ -39,7 +39,7 @@ class ItemID(object):
         #Comb
         if(label[0]=='C'):
             return 3
-	#ATC
+        #ATC
         if(label[0]=='A'):
             return 4
  
@@ -48,7 +48,7 @@ class Transform(PyKDL.Frame):
     def __init__(self, node, scale, file_name, parent=None):
         super(PyKDL.Frame, self).__init__() 
         self.node = node 
-	self.scale = scale
+        self.scale = scale
         self.file_name = file_name
         #self.shape
         self.children_transforms = []
@@ -148,7 +148,7 @@ class Transform(PyKDL.Frame):
 class Scene(Transform):
     def __init__(self, node, id_map, file_name):
         self.id_map = id_map
-	self.scale = np.array([1.0, 1.0, 1.0])
+        self.scale = np.array([1.0, 1.0, 1.0])
         super(Scene, self).__init__(node, self.scale, file_name, None) 
         self.deepItemIDMapping(id_map)
 

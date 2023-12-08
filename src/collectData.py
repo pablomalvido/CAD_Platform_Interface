@@ -487,9 +487,16 @@ class InputFilesDataCollector(object):
         elif ((row[1].upper()) == "T"): #Taping
           temp_dict['operation'] = row[1]
           temp_dict['label'] = row[2].split("-")
-          jig, tape_spot = map(str, row[3].split("."))
-          temp_dict['spot'] = []
-          temp_dict['spot'].append({'jig': jig, 'tape_spot': tape_spot[2:]})
+          #jig, tape_spot = map(str, row[3].split("."))
+          #temp_dict['spot'] = []
+          #temp_dict['spot'].append({'jig': jig, 'tape_spot': tape_spot[2:]})
+
+          temp_spot = row[3].split("-")
+          temp_couple_list = []
+          for spots in temp_spot:
+            jig, couple = map(str, spots.split("."))
+            temp_couple_list.append({'jig': jig, 'couple': couple})
+          temp_dict['spot'] = temp_couple_list
           main_list.append(temp_dict)
 
         elif ((row[1].upper()) == "TJ"): #Taping in a jig (new setup)

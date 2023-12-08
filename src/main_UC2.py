@@ -867,9 +867,9 @@ def all_operations_callback(req):
             if True:
                 #print(iter_index['spot'][0]['jig'])
                 new_spot.jig = spot['jig']
-                if iter_index['operation']=='T':
-                    new_spot.id = spot['tape_spot']
-                elif iter_index['operation']=='TJ':
+                #if iter_index['operation']=='T':
+                #    new_spot.id = spot['tape_spot']
+                if iter_index['operation']=='TJ':
                     new_spot.id = spot['guide']
                 else:
                     new_spot.id = spot['couple']

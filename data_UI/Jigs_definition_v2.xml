@@ -62,10 +62,10 @@
     </jig>
     <jig model="0014" xdim="18" xcol1="0" xcol2="18" ydim="22" ycol1="0" ycol2="22" zdim="100">
         <guide couple="1">
-            <key length="1.5" gap="4.5" height="37" height_corner="37" xcol1="0" xcol2="18" ycol1="-11" ycol2="7">
-                <pos name="x">20</pos>
-                <pos name="y">4.5</pos>
-                <pos name="z">90</pos>
+            <key length="2.0" gap="7.8" height="25" height_corner="37" xcol1="0" xcol2="18" ycol1="-11" ycol2="7">
+                <pos name="x">23</pos>
+                <pos name="y">7.8</pos>
+                <pos name="z">119</pos>
                 <rot name="R">0</rot>
                 <rot name="P">0</rot>
                 <rot name="Y">0</rot>
@@ -100,10 +100,30 @@
             </collision>
         </guide>
     </jig>
+    <jig model="0016" xdim="10" xcol1="0" xcol2="10" ydim="22" ycol1="0" ycol2="22" zdim="155">
+        <guide couple="1">
+            <key length="10" gap="10" height="55" height_corner="55" xcol1="0" xcol2="10" ycol1="-5" ycol2="25">
+                <pos name="x">0</pos>
+                <pos name="y">6</pos>
+                <pos name="z">100</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </key>
+            <collision xdim="10" ydim="20" zdim="25">
+                <pos name="x">34</pos>
+                <pos name="y">0</pos>
+                <pos name="z">55</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </collision>
+        </guide>
+    </jig>
     <comb model="0000210" xdim="3" xcol1="0" xcol2="3" ydim="21" ycol1="0" ycol2="21" zdim="5">
         <guide couple="1">
             <key length="4" gap="3" height="28.5" height_corner="0" xcol1="0" xcol2="3" ycol1="0" ycol2="21"><!--length and gap are inverted-->
-                <pos name="x">9.75</pos>
+                <pos name="x">7.2</pos>
                 <pos name="y">0</pos>
                 <pos name="z">5</pos>
                 <rot name="R">0</rot>
