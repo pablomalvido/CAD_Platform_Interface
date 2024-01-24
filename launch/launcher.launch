@@ -12,7 +12,7 @@
     <node pkg="tf" type="static_transform_publisher" name="ATC_rf" args="-1.54 0.805 1.4625 -1.57 0 1.57 cell ATC_rf 10" /><!-- "1.59 -0.805 -0.5455 1.57 0 1.57 cell ATC_rf 10" --><!-- REAL "1.601 -0.805 -0.5455 1.57 0 1.57 cell ATC_rf 10" --><!--"1.589 -0.782 -0.6155 1.57 0 1.57 cell ATC_rf 10" />-->
     <node name="UC2_handler" pkg="elvez_pkg" type="main_UC2.py" output="screen">
         <param name="base_frame" value="/torso_base_link" />
-	<param name="files_path_rel" value="data_UI/"/>
+	<param name="files_path_rel" value="data_UI_case2/"/>
         <!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_routing_v4/"/-->
         <!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_routing_v2/"/-->
 	<!--param name="files_path" value="/home/remodel/catkin_ws/src/elvez_pkg/data_icps/" /-->

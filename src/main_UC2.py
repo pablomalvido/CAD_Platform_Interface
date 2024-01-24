@@ -318,7 +318,7 @@ print(jigs_complete_dict)
 #RVIZ visualization
 for trans in transforms: 
     parent = trans.parent 
-    path = package_path + "platform/" + trans.getID().getCadID() + ".STL" 
+    path = package_path + "platform/" + trans.getID().getCommercialID() + ".STL" 
     color = visualization.Color(0.5, 0.5, 0.5, 1)
     scale=trans.scale
     #scale=np.array([0.001, 0.001, 0.001])
@@ -541,7 +541,8 @@ def connector_info_callback(req):
             for cable in dict_elvez.dict_WH[WH]['end_con'][req.label]:
                 data = pins_data()
                 data.label = cable
-                data.pins = dict_elvez.dict_WH[WH]['end_con'][req.label][cable]['end_pins']
+                #data.pins = dict_elvez.dict_WH[WH]['end_con'][req.label][cable]['end_pins']
+                data.pins = dict_elvez.dict_WH[WH]['end_con'][req.label][cable]['first_pins']
                 resp.cables.append(data)
     
     resp.success = True
