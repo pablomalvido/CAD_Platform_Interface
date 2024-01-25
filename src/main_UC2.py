@@ -493,6 +493,7 @@ tray_info_service = 'ELVEZ_platform_handler/tray_info'
 jig_info_service = 'ELVEZ_platform_handler/jig_info'
 guide_info_service = 'ELVEZ_platform_handler/guide_info'
 taping_spot_info_service = 'ELVEZ_platform_handler/taping_spot_info'
+all_guides_service = 'ELVEZ_platform_handler/all_guides'
 #Services for going through the operation sequence list
 next_operation_service = 'ELVEZ_platform_handler/next_operation'
 reset_sequence_list_service = 'ELVEZ_platform_handler/reset_sequence_list'
@@ -637,6 +638,29 @@ def guide_info_callback(req):
     return resp
 
 rospy.Service(guide_info_service, guide_info, guide_info_callback)
+
+
+def all_guides_info_callback(req): 
+    """
+    Service that returns information about all the guides in the platform
+    """
+    resp = guide_all_infoResponse()
+    
+    resp.success = False
+    for jig in jigs_complete_dict:
+        if jig[0]=='J' and 'guides' in jigs_complete_dict[jig]:
+            for guide in jigs_complete_dict[jig]['guides']:
+                data = jig_guide_data()
+                data.id = jig
+                data.key_length = jigs_complete_dict[jig]['guides'][guide]['key']['length']
+                data.key_gap = jigs_complete_dict[jig]['guides'][guide]['key']['gap']
+                data.key_height = jigs_complete_dict[jig]['guides'][guide]['key']['height']
+                data.key_center_frame = fromKdlToPose(jigs_complete_dict[jig]['guides'][guide]['key']['center_pose'])
+                data.dimensions = jigs_complete_dict[jig]['dimensions']
+                resp.data.append(data)
+                resp.success = True
+    return resp
+rospy.Service(all_guides_service, guide_all_info, all_guides_info_callback)
 
 
 def taping_spot_info_callback(req): 

@@ -120,6 +120,26 @@
             </collision>
         </guide>
     </jig>
+    <jig model="0020" xdim="0" xcol1="0" xcol2="10" ydim="0" ycol1="10" ycol2="0" zdim="155">
+        <guide couple="1">
+            <key length="10" gap="10" height="55" height_corner="55" xcol1="0" xcol2="10" ycol1="0" ycol2="10">
+                <pos name="x">0</pos>
+                <pos name="y">0</pos>
+                <pos name="z">0</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </key>
+            <collision xdim="10" ydim="10" zdim="25">
+                <pos name="x">0</pos>
+                <pos name="y">0</pos>
+                <pos name="z">0</pos>
+                <rot name="R">0</rot>
+                <rot name="P">0</rot>
+                <rot name="Y">0</rot>
+            </collision>
+        </guide>
+    </jig>
     <comb model="0000210" xdim="3" xcol1="0" xcol2="3" ydim="21" ycol1="0" ycol2="21" zdim="5">
         <guide couple="1">
             <key length="4" gap="3" height="28.5" height_corner="0" xcol1="0" xcol2="3" ycol1="0" ycol2="21"><!--length and gap are inverted-->

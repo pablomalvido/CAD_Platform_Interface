@@ -1,0 +1,7 @@
+string arm
+string end_guide
+string WH
+bool show
+
+---------------
+bool success
